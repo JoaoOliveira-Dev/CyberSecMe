@@ -2,7 +2,8 @@ const express = require("express");
 const routes = express.Router();
 
 routes.post("/login", (req, res) => {
-  res.send("Login endpoint");
+  const { email, password } = req.body;
+  res.send(`Email: ${email} / Senha: ${password}`);
 });
 
 module.exports = routes;
