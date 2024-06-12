@@ -1,6 +1,6 @@
-const db = require("../db");
+import { db } from "../db.js";
 
-const getUsers = (req, res) => {
+export const getUsers = (req, res) => {
   const q = "SELECT * FROM tab_usuario";
 
   db.query(q, (err, result) => {
@@ -8,8 +8,6 @@ const getUsers = (req, res) => {
       console.log(err);
       return res.status(500).send("Error fetching users");
     }
-    return res.status(200).send(result);
+    return res.status(200).json(result);
   });
 };
-
-module.exports = getUsers;

@@ -1,7 +1,8 @@
-import express from "express";
-import { getUsers } from "./controllers/user.js";
+import { Router } from "express";
+import getUsers from "./user";
 
-const routes = express.Router();
+const express = express;
+const routes = Router();
 
 routes.post("/login", (req, res) => {
   const { email, password } = req.body;
