@@ -1,15 +1,16 @@
 import express from "express";
 import routes from "./routes.js";
 import cors from "cors";
+import { db } from "./db.js";
+
+const port = 3001;
 
 const app = express();
 
 app.use(express.json());
-app.use(routes);
-
 app.use(cors());
 
-const port = 3001;
+app.use(routes);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello World!");
