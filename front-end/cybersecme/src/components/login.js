@@ -37,7 +37,7 @@ export default function Login() {
         <div className="links">
           {/* <a href="#">Esqueceu a senha?</a> */}
           <a href="/create-account">Criar uma conta</a>
-          <a href="/render-list">Renderizar lista</a>
+          <a href="/listusers">Renderizar lista</a>
         </div>
       </div>
       <ToastContainer closeButton={false} />
