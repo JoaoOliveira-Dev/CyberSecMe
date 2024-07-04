@@ -11,3 +11,25 @@ export const getUsers = (req, res) => {
     return res.status(200).json(result);
   });
 };
+
+export const updateUsers = (req, res) => {
+  const q = "UPDATE tab_usuario SET `usuario` = ?, `senha` = ? WHERE `id` = ?";
+
+  const values = [req.body.usuario, req.body.senha];
+
+  db.query(q, [...values, req.params.id], (err) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json("Usuário atualizado com sucesso.");
+  });
+};
+
+export const deleteUser = (req, res) => {
+  const q = "DELETE FROM tab_usuario WHERE `id` = ?";
+
+  db.query(q, [req.params.id], (err) => {
+    if (err) return res.json(err);
+
+    return res.status(200).json("Usuário deletado com sucesso.");
+  });
+};
