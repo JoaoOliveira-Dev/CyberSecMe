@@ -1,7 +1,6 @@
 import express from "express";
 import routes from "./routes/users.js";
 import cors from "cors";
-import { db } from "./db.js";
 
 const port = 3001;
 
