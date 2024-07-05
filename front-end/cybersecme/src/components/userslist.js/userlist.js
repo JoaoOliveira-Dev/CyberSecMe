@@ -110,7 +110,13 @@ function UserList() {
           />
         </Layer>
       )}
-      <Table>
+      <Table
+        className="table"
+        style={{
+          backgroundColor: "rgb(235, 235, 235)",
+          borderRadius: "5px",
+        }}
+      >
         <TableHeader>
           <TableRow>
             <TableCell scope="col" border="bottom">

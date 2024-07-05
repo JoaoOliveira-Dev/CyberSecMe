@@ -36,7 +36,7 @@ export default function Login() {
 
         <div className="links">
           {/* <a href="#">Esqueceu a senha?</a> */}
-          <a href="/create-account">Criar uma conta</a>
+          <a href="/createaccount">Criar uma conta</a>
           <a href="/listusers">Renderizar lista</a>
         </div>
       </div>

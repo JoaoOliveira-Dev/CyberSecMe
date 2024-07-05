@@ -1,12 +1,14 @@
 import express from "express";
-import { getUsers, updateUsers, deleteUser } from "../controllers/user.js";
+import {
+  getUsers,
+  updateUsers,
+  deleteUser,
+  createUser,
+} from "../controllers/user.js";
 
 const routes = express.Router();
 
-routes.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  res.send(`Email: ${email} / Senha: ${password}`);
-});
+routes.post("/createUser", createUser);
 
 routes.get("/getusers", getUsers);
 

@@ -12,6 +12,25 @@ export const getUsers = (req, res) => {
   });
 };
 
+export const createUser = (req, res) => {
+  const nome = req.body.nome;
+  const usuario = req.body.usuario;
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  const sqlInsert =
+    "INSERT INTO tab_usuario (nome, email, usuario, senha) VALUES (?,?,?,MD5(?));";
+
+  db.query(sqlInsert, [nome, email, usuario, senha], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Error inserting user");
+    }
+    console.log(result);
+    return res.status(200).send("User inserted successfully");
+  });
+};
+
 export const updateUsers = (req, res) => {
   const q = "UPDATE tab_usuario SET `usuario` = ?, `senha` = ? WHERE `id` = ?";
 

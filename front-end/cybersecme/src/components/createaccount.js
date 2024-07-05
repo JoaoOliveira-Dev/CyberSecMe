@@ -1,5 +1,8 @@
 // Import React
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import axios from "axios";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,12 +13,33 @@ import Axios from "axios";
 import "./createaccount.css";
 
 function CreateAccountComp() {
-  const [user, setUser] = useState("");
-  const [login, setLogin] = useState("");
+  const [nome, setNome] = useState("");
+  const [usuario, setUsuario] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [data, setData] = useState([]);
+  const [senha, setSenha] = useState("");
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:3001/createUser", {
+        nome,
+        usuario,
+        email,
+        senha,
+      })
+      .then((response) => {
+        toast.success("Conta criada com sucesso");
+
+        setNome("");
+        setUsuario("");
+        setEmail("");
+        setSenha("");
+      })
+      .catch((error) => {
+        toast.error("Erro ao criar a conta. Tente novamente mais tarde");
+      });
+  };
 
   return (
     <div className="container">
@@ -25,14 +49,14 @@ function CreateAccountComp() {
           <input
             type="text"
             placeholder="Digite o seu nome"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
           />
           <input
             type="text"
             placeholder="Usuário"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
           />
           <input
             type="text"
@@ -43,16 +67,10 @@ function CreateAccountComp() {
           <input
             type="password"
             placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Confirmar Senha"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button type="submit" onClick={() => alert(1)}>
+          <button type="submit" onClick={submit}>
             Criar Conta
           </button>
           <ToastContainer closeButton={false} />
